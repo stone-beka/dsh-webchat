@@ -1,5 +1,12 @@
 # dsh-webchat
 
+[![npm](https://img.shields.io/npm/v/@stone-beka/dsh-webchat?label=npm)](https://www.npmjs.com/package/@stone-beka/dsh-webchat)
+[![license](https://img.shields.io/npm/l/@stone-beka/dsh-webchat)](LICENSE)
+
+```powershell
+pnpm add @stone-beka/dsh-webchat
+```
+
 把 **DeepSeek 官方网页版聊天**搬进 [DSH](https://github.com/deepseek-ai) 的主栏：本机托管官方 `chat-demo` 构建，用你自己的 API Key 直连 `api.deepseek.com`，并补上了分支图谱、置顶、搜索、多选、导出这些网页端习惯的功能。
 
 > English: DeepSeek's official web chat, embedded in DSH as a main-column panel and driven by your own API key — plus a branch map, chat search, pinning with manual order, multi-select and export. Nothing is proxied; the key and the chats stay in the page's own origin.
