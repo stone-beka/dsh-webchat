@@ -4,6 +4,14 @@
 
 > English: DeepSeek's official web chat, embedded in DSH as a main-column panel and driven by your own API key — plus a branch map, chat search, pinning with manual order, multi-select and export. Nothing is proxied; the key and the chats stay in the page's own origin.
 
+## 截图
+
+![分支图谱](docs/images/branch-map.png)
+
+![搜索对话](docs/images/search.png)
+
+![首次说明](docs/images/about.png)
+
 ## 安全边界
 
 - **不同源**：页面跑在 `127.0.0.1:43117`，与 DSH 的 GUI 是不同 origin，页面里的脚本读不到 GUI 的会话凭据，也调不动 DSH 自己的 `/api`。
