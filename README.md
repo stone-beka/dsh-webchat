@@ -36,19 +36,29 @@
 
 ## 安装
 
-插件以「本地 bundle」方式安装：DSH 的 profile 会把它当作一个包加载。
+插件以「本地 bundle」或 npm 包两种方式装进 DSH 的 profile。
+
+**方式一：从 npm 装**（推荐）
 
 ```powershell
-# 1) 把仓库放在任意位置，例如
-#    C:\dsh-plugins\dsh-webchat
+# 在 profile 目录（例如 %USERPROFILE%\.dsh\profiles\desktop）
+pnpm add @stone-beka/dsh-webchat
+# 再把包名加进同一个 package.json 的 dsh.profile.bundles
+#   "bundles": [ ..., "@stone-beka/dsh-webchat" ]
+# 然后重启 DSH
+```
 
-# 2) 在你的 profile 目录（例如 %USERPROFILE%\.dsh\profiles\desktop）
-#    的 package.json 里加一条依赖，然后安装
-#    "dependencies": { "dsh-webchat": "link:C:/dsh-plugins/dsh-webchat" }
+**方式二：从本地目录 link**
+
+```powershell
+# 1) 把仓库放在任意位置，例如 C:\dsh-plugins\dsh-webchat
+
+# 2) 在 profile 的 package.json 里加一条依赖，然后安装
+#    "dependencies": { "@stone-beka/dsh-webchat": "link:C:/dsh-plugins/dsh-webchat" }
 pnpm install
 
 # 3) 把包名加进同一个 package.json 的 dsh.profile.bundles
-#    "bundles": [ ..., "dsh-webchat" ]
+#    "bundles": [ ..., "@stone-beka/dsh-webchat" ]
 
 # 4) 重启 DSH（bundle 图在启动时构建），左侧栏就会出现入口
 ```
