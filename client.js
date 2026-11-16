@@ -11,7 +11,7 @@
  * writes DSH session data, and the key never reaches the Host.
  */
 window.__ModuleLoader__.load({
-  id: 'dsh-webchat',
+  id: '@stone-beka/dsh-webchat',
   factory(require) {
     const React = require('react')
     const h = React.createElement
