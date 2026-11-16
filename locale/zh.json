@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "DSH WebChat",
+    "description": "安全边界：页面与 DSH 不同源（Host 只在本机回环地址上读静态文件），API Key 只存在该页面自己的浏览器存储里、不经过 Host 也不进 DSH 会话，聊天记录只在本机 IndexedDB，且没有工具、没有文件读写、没有副作用。在此之上：在 DSH 主栏里打开 DeepSeek 网页版那套聊天，由你自己的 API Key 驱动。页面是本机托管的 chat-demo 构建（fork 自官方 v0.1.1，MIT），直连 api.deepseek.com；编辑上一条消息、重新生成、多分支切换都在，另加「分支图谱」侧栏（默认收起）、搜索对话（Ctrl+K）、多选批量操作、置顶排序、导出分享（Markdown / HTML）、首次使用说明与帮助。首次打开跟随 DSH 的主题和语言。代价：它是独立应用，聊天记录不进 DSH，切换面板会重新加载页面。"
+  }
+}

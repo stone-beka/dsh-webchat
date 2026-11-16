@@ -1,0 +1,40 @@
+{
+  "name": "dsh-webchat",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "DeepSeek's official web chat, embedded in DSH as a main-column panel and driven by your own API key — plus a branch map, chat search, pinning and export.",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "dist",
+    "locale/*.json",
+    "README.md",
+    "icon.svg"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek",
+    "chat",
+    "plugin",
+    "bundle"
+  ],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}

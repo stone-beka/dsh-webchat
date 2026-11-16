@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "DSH WebChat",
+    "description": "Security: the page is a different origin from the DSH GUI (the host only reads local static files on loopback), your API key lives only in that page’s own browser storage and never passes through the host or enters a DSH session, chats stay in this machine’s IndexedDB, and there are no tools, no file access, and no side effects. On top of that: DeepSeek’s web chat in the main column, driven by your own API key. The page is a locally hosted chat-demo build (forked from upstream v0.1.1, MIT) that talks straight to api.deepseek.com, keeping edit, regenerate and branch switching, plus a Branch map sidebar (collapsed by default), chat search (Ctrl+K), multi-select batch actions, manual pinned order, export for sharing (Markdown / HTML), first-run notes and help. The page follows DSH’s theme and language on first open. Trade-offs: it is a separate application, its chats do not appear in DSH, and switching panels reloads the page."
+  }
+}

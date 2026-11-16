@@ -1,0 +1,543 @@
+﻿.panel {
+  animation: branch-map-in 160ms var(--ds-ease-in-out, ease-out) both;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  border-left: 1px solid var(--dsw-alias-border-l3);
+  background: var(--dsw-alias-bg-base);
+}
+
+.dragging {
+  user-select: none;
+  cursor: col-resize;
+}
+
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -3px;
+  width: 7px;
+  z-index: 2;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.handle:hover,
+.dragging .handle {
+  background: color-mix(in srgb, var(--dsw-alias-brand-primary) 22%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 14px 10px 10px 14px;
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.zoomButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 5px;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--dsw-alias-label-secondary);
+  background: transparent;
+  cursor: pointer;
+}
+
+.zoomButton:hover {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.zoomValue {
+  min-width: 38px;
+  height: 20px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 5px;
+  font-size: 10.5px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--dsw-alias-label-tertiary);
+  background: transparent;
+  cursor: pointer;
+}
+
+.zoomValue:hover {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.headActions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font: var(--dsw-font-s-strong-14);
+  color: var(--dsw-alias-label-primary);
+}
+
+.stats {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.scrollWrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  background: var(--dsw-alias-bg-base);
+}
+
+/* 背景：渐变 / 点阵，用 accent 的低透明度，深色主题下自动变暗 */
+.scrollWrap[data-bg='gradient'] {
+  background:
+    radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--map-accent, var(--dsw-alias-brand-primary)) 10%, transparent), transparent 72%),
+    radial-gradient(90% 60% at 90% 100%, color-mix(in srgb, var(--map-accent, var(--dsw-alias-brand-primary)) 7%, transparent), transparent 70%),
+    var(--dsw-alias-bg-base);
+}
+
+.scrollWrap[data-bg='dots'] {
+  background-color: var(--dsw-alias-bg-base);
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--dsw-alias-label-tertiary) 26%, transparent) 0.6px,
+    transparent 0.6px
+  );
+  background-size: 14px 14px;
+}
+
+/* 设置面板：挂在头部下方 */
+.settings {
+  position: absolute;
+  top: 52px;
+  right: 10px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 232px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--dsw-alias-border-l3);
+  border-radius: 10px;
+  background: var(--dsw-alias-bg-base);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
+}
+
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.settingRow input[type='range'] {
+  width: 92px;
+}
+
+.swatches {
+  display: flex;
+  gap: 5px;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 1px solid var(--dsw-alias-border-l3);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.swatchActive {
+  outline: 2px solid var(--dsw-alias-label-primary);
+  outline-offset: 1px;
+}
+
+.segmented {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 6px;
+  background: var(--dsw-alias-bg-layer-2);
+}
+
+.segment {
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--dsw-alias-label-tertiary);
+  background: transparent;
+  cursor: pointer;
+}
+
+.segmentActive {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-alias-bg-base);
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0 10px 10px 4px;
+  cursor: grab;
+  overscroll-behavior: contain;
+}
+
+/* 右下角小地图：全貌 + 当前视口框，点哪跳哪 */
+.mini {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: min(260px, 52%);
+  aspect-ratio: 4 / 3;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid var(--dsw-alias-border-l3);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--dsw-alias-bg-base) 96%, transparent);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 16%);
+  cursor: pointer;
+  touch-action: none;
+  opacity: 0.94;
+}
+
+.mini:hover {
+  opacity: 1;
+}
+
+.miniMap {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.miniUser {
+  fill: var(--dsw-alias-brand-primary);
+}
+
+.miniBot {
+  fill: color-mix(in srgb, var(--dsw-alias-brand-primary) 38%, var(--dsw-alias-bg-base));
+}
+
+.miniView {
+  fill: color-mix(in srgb, var(--dsw-alias-brand-primary) 10%, transparent);
+  stroke: var(--dsw-alias-brand-primary);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.scrollPanning {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* 拖动时不要让卡片参与命中测试，省掉 hover 重绘 */
+.scrollPanning .card {
+  pointer-events: none;
+}
+
+.scaler {
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  contain: layout;
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.edge {
+  fill: none;
+  stroke-width: 1.3;
+  stroke-dasharray: 4 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 当前线路：实线、稍粗、品牌色 */
+.edgeOn {
+  stroke: var(--map-accent, var(--dsw-alias-brand-primary));
+  stroke-width: 1.7;
+  stroke-dasharray: none;
+  opacity: 0.7;
+}
+
+/* 未选中的分支：仍是虚线，但比之前清楚一档 */
+.edgeOff {
+  stroke: var(--dsw-alias-label-tertiary);
+  stroke-width: 1.4;
+  opacity: 0.62;
+}
+
+.card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  box-sizing: border-box;
+  padding: 9px 10px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: var(--dsw-alias-label-primary);
+  cursor: pointer;
+  contain: layout paint style;
+
+}
+
+/* 你的消息：深蓝实心卡 */
+.cardUser {
+  background: color-mix(in srgb, var(--map-accent, var(--dsw-alias-brand-primary)) 94%, var(--dsw-alias-bg-base));
+  border-color: color-mix(in srgb, #ffffff 18%, transparent);
+  color: var(--dsw-alias-label-primary-foreground);
+}
+
+/* 回答：浅蓝卡片 */
+.cardBot {
+  background: color-mix(in srgb, var(--map-accent, var(--dsw-alias-brand-primary)) 14%, var(--dsw-alias-bg-base));
+  border-color: color-mix(in srgb, var(--map-accent, var(--dsw-alias-brand-primary)) 28%, var(--dsw-alias-border-l3));
+}
+
+/* 当前这条线路全亮；其它分支整体压暗 */
+.cardOff {
+  opacity: var(--map-dim, 0.32);
+}
+
+.cardOff:hover {
+  opacity: min(1, calc(var(--map-dim, 0.32) + 0.5));
+}
+
+/* 当前停留的节点：一圈外描边，深蓝卡和浅蓝卡都看得见 */
+.cardCurrent {
+  box-shadow:
+    0 0 0 2px var(--dsw-alias-bg-base),
+    0 0 0 3.5px var(--map-accent, var(--dsw-alias-brand-primary));
+}
+
+.card:hover {
+  filter: brightness(1.05);
+}
+
+/* 深蓝卡上的文字与控件 */
+.cardUser .role,
+.cardUser .snippet {
+  color: var(--dsw-alias-label-primary-foreground);
+}
+
+.cardUser .meta,
+.cardUser .foot {
+  color: color-mix(in srgb, var(--dsw-alias-label-primary-foreground) 72%, transparent);
+}
+
+.cardUser .roleUser {
+  background: var(--dsw-alias-label-primary-foreground);
+}
+
+.cardUser .badge {
+  color: var(--dsw-alias-label-primary-foreground);
+  background: color-mix(in srgb, #ffffff 22%, transparent);
+}
+
+.cardUser .toggle {
+  color: color-mix(in srgb, var(--dsw-alias-label-primary-foreground) 80%, transparent);
+}
+
+.cardUser .toggle:hover {
+  color: var(--dsw-alias-label-primary-foreground);
+  background: color-mix(in srgb, #ffffff 20%, transparent);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.roleIcon {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+}
+
+.roleUser {
+  background: color-mix(in srgb, var(--map-accent, var(--dsw-alias-brand-primary)) 94%, var(--dsw-alias-bg-base));
+}
+
+.roleBot {
+  border: 1.2px solid var(--dsw-alias-label-tertiary);
+}
+
+.role {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: var(--dsw-alias-label-secondary);
+}
+
+
+
+.badge {
+  flex-shrink: 0;
+  padding: 0 4px;
+  border-radius: 4px;
+  font-size: 9.5px;
+  line-height: 14px;
+  font-variant-numeric: tabular-nums;
+  color: var(--dsw-alias-label-secondary);
+  background: var(--dsw-alias-bg-layer-3);
+}
+
+.badgeOn {
+  color: var(--dsw-alias-brand-text);
+}
+
+.badgeError {
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.snippet {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 17px;
+  color: var(--dsw-alias-label-secondary);
+  word-break: break-word;
+}
+
+
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 10px;
+  line-height: 13px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.flags {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.toggle {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--dsw-alias-label-tertiary);
+  background: transparent;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.legend {
+  flex-shrink: 0;
+  padding: 8px 14px 12px;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--dsw-alias-label-tertiary);
+  user-select: none;
+}
+
+@keyframes branch-map-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}

@@ -1,0 +1,105 @@
+.dialog {
+  width: min(480px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+}
+
+.main {
+  min-height: 0;
+  overflow: auto;
+}
+
+.lead {
+  margin: 0 0 4px;
+  color: var(--dsw-alias-label-primary);
+}
+
+.leadSub {
+  margin: 0 0 16px;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.signoff {
+  margin: 20px 0 0;
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 13px;
+  line-height: 20px;
+  text-align: right;
+}
+
+.outro {
+  margin: 20px 0 0;
+  color: var(--dsw-alias-label-secondary);
+  font-size: 13px;
+  line-height: 20px;
+  text-align: right;
+}
+
+/* 文案里用 \n 换行的条目（例如「做了个小工具」后面接正文）按原样断行 */
+.points li,
+.safePoints li {
+  white-space: pre-line;
+}
+
+.safe {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border-left: 3px solid var(--dsw-alias-brand-primary);
+  background: color-mix(in srgb, var(--dsw-alias-brand-primary) 7%, transparent);
+}
+
+.safeHeading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  color: var(--dsw-alias-brand-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.safeIcon {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.safePoints {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.safePoints li {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 13px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+.section + .section {
+  margin-top: 16px;
+}
+
+.heading {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--dsw-alias-label-primary);
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.points li {
+  color: var(--dsw-alias-label-secondary);
+  overflow-wrap: anywhere;
+}
