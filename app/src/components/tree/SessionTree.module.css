@@ -1,4 +1,4 @@
-﻿.panel {
+.panel {
   animation: branch-map-in 160ms var(--ds-ease-in-out, ease-out) both;
   position: relative;
   display: flex;

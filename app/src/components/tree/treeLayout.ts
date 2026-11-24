@@ -1,4 +1,4 @@
-﻿import { getVisibleMessages, normalizeSession } from '../../services/chat/branches.js'
+import { getVisibleMessages, normalizeSession } from '../../services/chat/branches.js'
 import type { Message, ReplyStatus, Session } from '../../services/chat/types.js'
 
 /**

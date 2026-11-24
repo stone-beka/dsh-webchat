@@ -1,4 +1,4 @@
-﻿import { BackupError, fail } from './errors.js'
+import { BackupError, fail } from './errors.js'
 import {
   EXPORT_FORMAT_VERSION,
   type ChatMessage,

@@ -1,4 +1,4 @@
-﻿import type { TranslationMessage } from '../../i18n/index.js'
+import type { TranslationMessage } from '../../i18n/index.js'
 import type { ApiErrorKind } from '../api/client.js'
 import type {
   ChatModel,

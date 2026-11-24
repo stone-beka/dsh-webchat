@@ -1,4 +1,4 @@
-﻿import { getVisibleMessages, normalizeSession } from './branches.js'
+import { getVisibleMessages, normalizeSession } from './branches.js'
 import type { Session } from './types.js'
 
 /**

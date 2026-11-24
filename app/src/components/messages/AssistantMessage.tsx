@@ -1,4 +1,4 @@
-﻿import { useTranslate } from '../../i18n/index.js'
+import { useTranslate } from '../../i18n/index.js'
 import clsx from 'clsx'
 import { memo } from 'react'
 import { IconRefreshOutline16, IconWarningOutline16 } from '../base/icons.js'

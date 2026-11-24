@@ -1,4 +1,4 @@
-﻿import clsx from 'clsx'
+import clsx from 'clsx'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import { useTranslate } from '../../i18n/index.js'
 import { requestMessageFocus } from '../../services/messageFocus.js'

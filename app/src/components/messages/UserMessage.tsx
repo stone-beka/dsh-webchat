@@ -1,4 +1,4 @@
-﻿import { useTranslate } from '../../i18n/index.js'
+import { useTranslate } from '../../i18n/index.js'
 import clsx from 'clsx'
 import { memo, useLayoutEffect, useRef, useState } from 'react'
 import { useIsMobile } from '../../app/viewport.js'

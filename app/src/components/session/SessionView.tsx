@@ -1,4 +1,4 @@
-﻿import clsx from 'clsx'
+import clsx from 'clsx'
 import { useIsMobile } from '../../app/viewport.js'
 import { useTranslate } from '../../i18n/index.js'
 import type { Session } from '../../services/chat/types.js'
