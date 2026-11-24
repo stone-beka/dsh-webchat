@@ -52,6 +52,8 @@
     }
   },
   "scripts": {
-    "prepublishOnly": "node -e \"const b=require('fs').readFileSync('package.json');if(b[0]===0xEF&&b[1]===0xBB&&b[2]===0xBF)throw new Error('package.json has UTF-8 BOM; strip it before publishing')\""
+    "prepublishOnly": "node scripts/preflight.mjs",
+    "preflight": "node scripts/preflight.mjs",
+    "selftest": "node scripts/preflight-selftest.mjs"
   }
 }
